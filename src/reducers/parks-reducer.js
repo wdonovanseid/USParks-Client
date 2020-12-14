@@ -17,6 +17,11 @@ export default (state = defaultState, action) => {
         isLoading: false,
         parks: action.parks
       });
+    case c.GET_PARKS_FAILURE:
+      return Object.assign({}, state, {
+        isLoading: false,
+        error: action.error
+      });
     default:
       return state;
     }
