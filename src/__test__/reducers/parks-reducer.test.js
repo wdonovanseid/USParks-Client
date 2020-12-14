@@ -7,13 +7,13 @@ describe('parksReducer', () => {
 
   const defaultState = {
     isLoading: false,
-    parks: [],
+    parkList: [],
     error: null
   };
 
   const loadingState = {
     isLoading: false,
-    parks: [],
+    parkList: [],
     error: null
   };
 
@@ -21,7 +21,7 @@ describe('parksReducer', () => {
     expect(parksReducer(defaultState, {type: null })).toEqual(
       {
         isLoading: false,
-        parks: [],
+        parkList: [],
         error: null
       }
     );
@@ -34,7 +34,7 @@ describe('parksReducer', () => {
 
     expect(parksReducer(defaultState, action)).toEqual({
         isLoading: true,
-        parks: [],
+        parkList: [],
         error: null
     });
   });
@@ -43,12 +43,12 @@ describe('parksReducer', () => {
     const parks = "A park";
     action = {
       type: c.GET_PARKS_SUCCESS,
-      parks
+      parkList: parks
     };
 
     expect(parksReducer(loadingState, action)).toEqual({
         isLoading: false,
-        parks: "A park",
+        parkList: "A park",
         error: null
     });
   });
@@ -62,7 +62,7 @@ describe('parksReducer', () => {
 
     expect(parksReducer(loadingState, action)).toEqual({
         isLoading: false,
-        parks: [],
+        parkList: [],
         error: "An error"
     });
   });

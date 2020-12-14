@@ -2,7 +2,7 @@ import * as c from './../actions/ActionTypes';
 
 const defaultState = {
   isLoading: false,
-  parks: [],
+  parkList: [],
   error: null
 }
 
@@ -15,7 +15,7 @@ export default (state = defaultState, action) => {
     case c.GET_PARKS_SUCCESS:
       return Object.assign({}, state, {
         isLoading: false,
-        parks: action.parks
+        parkList: action.parkList
       });
     case c.GET_PARKS_FAILURE:
       return Object.assign({}, state, {

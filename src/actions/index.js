@@ -4,14 +4,22 @@ export const requestParks = () => ({
   type: c.REQUEST_PARKS
 });
 
-export const getParksSuccess = (parks) => ({
+export const getParksSuccess = (parkList) => ({
   type: c.GET_PARKS_SUCCESS,
-  parks
+  parkList
 });
 
 export const getParksFailure = (error) => ({
   type: c.GET_PARKS_FAILURE,
   error
+});
+
+export const hideEditForm = ({
+  type: c.HIDE_EDIT_FORM
+});
+
+export const showEditForm = ({
+  type: c.SHOW_EDIT_FORM
 });
 
 export const makeApiCall = () => {
@@ -28,3 +36,18 @@ export const makeApiCall = () => {
       });
   }
 }
+
+export const toggleForm = ({
+  type: c.TOGGLE_FORM
+})
+
+export const selectedPark = (park) => {
+  return {
+    type: c.SELECTED_PARK,
+    selectedPark: park
+  }
+}
+
+export const unselectPark = ({
+  type: c.UNSELECT_PARK
+})
