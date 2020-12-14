@@ -9,10 +9,10 @@ describe('Park reducer actions', () => {
   });
 
   it('getParksSuccess should create GET_PARKS_SUCCESS action', () => {
-    const Parks = "A Park";
-    expect(actions.getParksSuccess(Parks)).toEqual({
+    const parks = "A Park";
+    expect(actions.getParksSuccess(parks)).toEqual({
       type: c.GET_PARKS_SUCCESS,
-      Parks
+      parks
     });
   });
 
