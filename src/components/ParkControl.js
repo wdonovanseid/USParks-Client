@@ -41,7 +41,7 @@ class ParkControl extends React.Component {
 
   handleChangingSelectedPark = (id) => {
     const { dispatch } = this.props;
-    const park = this.props.parkList.find(x => x.parkId === id);
+    const park = this.props.parkList.parkList.find(x => x.parkId === id);
     console.log("park", park);
     const action = a.selectedPark(park);
     dispatch(action);
