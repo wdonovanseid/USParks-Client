@@ -12,6 +12,11 @@ export default (state = defaultState, action) => {
       return Object.assign({}, state, {
         isLoading: true
       });
+    case c.GET_PARKS_SUCCESS:
+      return Object.assign({}, state, {
+        isLoading: false,
+        parks: action.parks
+      });
     default:
       return state;
     }
