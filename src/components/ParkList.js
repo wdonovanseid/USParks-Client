@@ -6,7 +6,6 @@ function ParkList(props){
   console.log("parklist" , parkList);
   return (
     <React.Fragment>
-      <h1>Parks</h1>
       <ul>
         {parkList.parkList.map((park, index) =>
           <li key={index}>

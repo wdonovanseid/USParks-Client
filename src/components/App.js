@@ -9,12 +9,7 @@ function App() {
       <div className="contain">
         <Header />
         <div id="spacing">
-          <div className="box">
-            <div className="inner-box">
-              <ParkControl />
-              <div id="bottom-button"></div>
-            </div>
-          </div>
+          <ParkControl />
         </div>
         <Footer />
       </div>

@@ -16,7 +16,6 @@ function EditParkForm(props) {
   }
   return (
     <React.Fragment>
-      <h1>Edit Park</h1>
       <ReusableForm
       formSubmissionHandler={handleEditParkFormSubmission}
       buttonText="Edit Park!"

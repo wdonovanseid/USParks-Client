@@ -77,12 +77,14 @@ class ParkControl extends React.Component {
     } else {
       let currentlyVisibleState = null;
       let buttonText = null;
+      let title = null;
       if (this.props.editFormVisible) {
         currentlyVisibleState =
         <EditParkForm 
           park={this.props.selectedPark}
           onEditPark={this.handleEditingPark}
         />
+        title=`Edit ${this.props.selectedPark.name}`
         buttonText = "Return to Park List"
       } else if (this.props.selectedPark != null) {
         currentlyVisibleState = 
@@ -91,10 +93,12 @@ class ParkControl extends React.Component {
           onClickingEdit = {this.handleEditClick}
           onClickingDelete = {this.handleDeleteParkClick}
         />
+        title="Details"
         buttonText = "Return to Park List"
       } else if (this.props.formVisibleOnPage) {
         currentlyVisibleState =
         <NewParkForm onNewParkCreation = {this.handleAddingNewPark}/>
+        title="Add a new Park"
         buttonText = "Return to Park List"
       } else {
         currentlyVisibleState =
@@ -102,13 +106,17 @@ class ParkControl extends React.Component {
           parkList = {this.props.parkList}
           onParkSelection = {this.handleChangingSelectedPark}
         />
+        title = "Parks"
         buttonText = "Add a Park"
       }
-      // const newButton = <button className="btn-info" onClick={this.handleClick}>{buttonText}</button>;
-      // ReactDOM.render(newButton,document.getElementById('bottom-button'));
       return (
         <React.Fragment>
-          {currentlyVisibleState}
+          <h1>{title}</h1>
+          <div className="box">
+            <div className="inner-box">
+              {currentlyVisibleState}
+            </div>
+          </div>          
           <button className="btn-info" onClick={this.handleClick}>{buttonText}</button>
         </React.Fragment>
       );
