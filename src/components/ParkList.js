@@ -21,7 +21,7 @@ function ParkList(props){
 }
 
 ParkList.propTypes = {
-  parkList: PropTypes.array,
+  parkList: PropTypes.object,
   onParkSelection: PropTypes.func
 };
 

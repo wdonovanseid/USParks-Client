@@ -5,6 +5,9 @@ import { makeApiCall } from '../actions';
 import ParkDetail from './ParkDetail';
 import ParkList from './ParkList';
 import * as a from './../actions/index';
+import ReactDOM from 'react-dom';
+import NewParkForm from './NewParkForm';
+import EditParkForm from './EditParkForm';
 
 class ParkControl extends React.Component {
   // constructor(props) {
@@ -22,7 +25,13 @@ class ParkControl extends React.Component {
       const action2 = a.hideEditForm
       dispatch(action);
       dispatch(action2);
-    } else {
+    } else if (this.props.editFormVisible) {
+      const { dispatch } = this.props
+      const action = a.showEditForm
+      dispatch(action);
+      const action2 = a.unselectPark
+      dispatch(action2);
+    } else { 
       const action = a.toggleForm
       dispatch(action);      
     }
@@ -34,6 +43,9 @@ class ParkControl extends React.Component {
   }
 
   handleEditClick = () => {
+    const { dispatch } = this.props;
+    const action = a.showEditForm
+    dispatch(action);
   }
 
   handleDeleteParkClick = (id) => {
@@ -47,6 +59,15 @@ class ParkControl extends React.Component {
     dispatch(action);
   }
 
+  handleAddingNewPark = (newPark) => {
+    const { dispatch } = this.props;
+    const action = a.makeApiCall(newPark);
+    const action2 = a.toggleForm;
+    dispatch(action);
+    dispatch(action2);
+
+  }
+
   render() {
     const { error, isLoading } = this.props;
     if (error) {
@@ -55,25 +76,40 @@ class ParkControl extends React.Component {
       return <React.Fragment>Loading...</React.Fragment>;
     } else {
       let currentlyVisibleState = null;
-      // let buttonText = null;
-      if (this.props.selectedPark != null) {
+      let buttonText = null;
+      if (this.props.editFormVisible) {
+        currentlyVisibleState =
+        <EditParkForm 
+          park={this.props.selectedPark}
+          onEditPark={this.handleEditingPark}
+        />
+        buttonText = "Return to Park List"
+      } else if (this.props.selectedPark != null) {
         currentlyVisibleState = 
         <ParkDetail 
           park = {this.props.selectedPark}
           onClickingEdit = {this.handleEditClick}
           onClickingDelete = {this.handleDeleteParkClick}
-          // buttonText= "Return to Park List"
         />
+        buttonText = "Return to Park List"
+      } else if (this.props.formVisibleOnPage) {
+        currentlyVisibleState =
+        <NewParkForm onNewParkCreation = {this.handleAddingNewPark}/>
+        buttonText = "Return to Park List"
       } else {
         currentlyVisibleState =
         <ParkList
           parkList = {this.props.parkList}
           onParkSelection = {this.handleChangingSelectedPark}
         />
+        buttonText = "Add a Park"
       }
+      // const newButton = <button className="btn-info" onClick={this.handleClick}>{buttonText}</button>;
+      // ReactDOM.render(newButton,document.getElementById('bottom-button'));
       return (
         <React.Fragment>
           {currentlyVisibleState}
+          <button className="btn-info" onClick={this.handleClick}>{buttonText}</button>
         </React.Fragment>
       );
     }
@@ -81,7 +117,7 @@ class ParkControl extends React.Component {
 }
 
 ParkControl.propTypes = {
-  parkList: PropTypes.array,
+  parkList: PropTypes.object,
   isLoading: PropTypes.bool,
   error: PropTypes.string,
   formVisibleOnPage: PropTypes.bool,

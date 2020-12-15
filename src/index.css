@@ -45,3 +45,48 @@
 .selector :hover {
   background-color: aquamarine;
 }
+
+/* Boxes */
+.box {
+  height: 500px;
+  width: 100%;
+  text-align: left;
+  overflow-y: scroll;
+  margin-top: 2% 0 2% 5%;
+}
+.inner-box {
+  margin: 2% 5% 2% 5%;
+}
+
+input {
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  width: 400px;
+  height: 30px;
+  border: 1px solid grey;
+  border-radius: 10px;
+  margin: 5px;
+  padding: 0 10px 0 10px;
+  color: rgb(66, 66, 66);
+}
+
+textarea {
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  width: 400px;
+  height: 120px;
+  border: 1px solid grey;
+  border-radius: 10px;
+  margin: 5px;
+  padding: 0 10px 0 10px;
+  color: rgb(66, 66, 66);;
+}
+
+button {
+  background-color: cornflowerblue;
+  color: rgb(255, 255, 255);
+  border-radius: 10px;
+  font-size: 20px;
+  padding: 10px;
+
+}
