@@ -22,10 +22,13 @@ export const showEditForm = ({
   type: c.SHOW_EDIT_FORM
 });
 
-export const makeApiCall = () => {
+export const makeApiCall = (param, parkInfo) => {
   return dispatch => {
     dispatch(requestParks);
-    return fetch(`http://localhost:5000/api/parks?`, { headers: { 'accept': 'text/plain', 'Authorization': `Bearer ${process.env.REACT_APP_API_KEY}`}})
+    return fetch(`http://localhost:5000/api/parks?`, {
+      method: `${param}`,
+      headers: { 'accept': 'text/plain', 'Authorization': `Bearer ${process.env.REACT_APP_API_KEY}`,
+      body: `${parkInfo}`}})
       .then(response => response.json())
       .then(
         (jsonifiedResponse) => {
@@ -39,7 +42,7 @@ export const makeApiCall = () => {
 
 export const toggleForm = ({
   type: c.TOGGLE_FORM
-})
+});
 
 export const selectedPark = (park) => {
   return {
@@ -50,4 +53,4 @@ export const selectedPark = (park) => {
 
 export const unselectPark = ({
   type: c.UNSELECT_PARK
-})
+});

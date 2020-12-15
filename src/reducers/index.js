@@ -5,7 +5,7 @@ import selectedParkReducer from './selected-park_reducer';
 import formVisibleReducer from './form-visible-reducer';
 
 const rootReducer = combineReducers({
-  parkList: parksReducer,
+  parkApiCall: parksReducer,
   selectedPark: selectedParkReducer,
   editFormVisible: editFormReducer,
   formVisibleOnPage: formVisibleReducer

@@ -48,7 +48,7 @@
 
 /* Boxes */
 .box {
-  height: 500px;
+  height: 400px;
   width: 100%;
   text-align: left;
   overflow-y: scroll;
@@ -89,4 +89,9 @@ button {
   font-size: 20px;
   padding: 10px;
 
+}
+
+ul {
+  list-style: none;
+  list-style-type: none;
 }

@@ -3,11 +3,10 @@ import PropTypes from 'prop-types';
 
 function ParkList(props){
   const { parkList, onParkSelection } = props;
-  console.log("parklist" , parkList);
   return (
     <React.Fragment>
       <ul>
-        {parkList.parkList.map((park, index) =>
+        {parkList.map((park, index) =>
           <li key={index}>
             <div className="selector" onClick={() => onParkSelection(park.parkId)}>
               <h3>{park.name}</h3>
@@ -20,7 +19,7 @@ function ParkList(props){
 }
 
 ParkList.propTypes = {
-  parkList: PropTypes.object,
+  parkList: PropTypes.array,
   onParkSelection: PropTypes.func
 };
 

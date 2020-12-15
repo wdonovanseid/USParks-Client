@@ -5,7 +5,6 @@ import { makeApiCall } from '../actions';
 import ParkDetail from './ParkDetail';
 import ParkList from './ParkList';
 import * as a from './../actions/index';
-import ReactDOM from 'react-dom';
 import NewParkForm from './NewParkForm';
 import EditParkForm from './EditParkForm';
 
@@ -39,7 +38,7 @@ class ParkControl extends React.Component {
   
   componentDidMount() {
     const {dispatch} = this.props;
-    dispatch(makeApiCall());
+    dispatch(makeApiCall("GET"));
   }
 
   handleEditClick = () => {
@@ -53,15 +52,14 @@ class ParkControl extends React.Component {
 
   handleChangingSelectedPark = (id) => {
     const { dispatch } = this.props;
-    const park = this.props.parkList.parkList.find(x => x.parkId === id);
-    console.log("park", park);
+    const park = this.props.parkApiCall.parkList.find(x => x.parkId === id);
     const action = a.selectedPark(park);
     dispatch(action);
   }
 
   handleAddingNewPark = (newPark) => {
     const { dispatch } = this.props;
-    const action = a.makeApiCall(newPark);
+    const action = a.makeApiCall("POST", newPark);
     const action2 = a.toggleForm;
     dispatch(action);
     dispatch(action2);
@@ -93,7 +91,7 @@ class ParkControl extends React.Component {
           onClickingEdit = {this.handleEditClick}
           onClickingDelete = {this.handleDeleteParkClick}
         />
-        title="Details"
+        title=`${this.props.selectedPark.name}`
         buttonText = "Return to Park List"
       } else if (this.props.formVisibleOnPage) {
         currentlyVisibleState =
@@ -103,7 +101,7 @@ class ParkControl extends React.Component {
       } else {
         currentlyVisibleState =
         <ParkList
-          parkList = {this.props.parkList}
+          parkList = {this.props.parkApiCall.parkList}
           onParkSelection = {this.handleChangingSelectedPark}
         />
         title = "Parks"
@@ -125,7 +123,7 @@ class ParkControl extends React.Component {
 }
 
 ParkControl.propTypes = {
-  parkList: PropTypes.object,
+  parkApiCall: PropTypes.object,
   isLoading: PropTypes.bool,
   error: PropTypes.string,
   formVisibleOnPage: PropTypes.bool,
@@ -136,7 +134,7 @@ ParkControl.propTypes = {
 
 const mapStateToProps = state => {
   return {
-    parkList: state.parkList,
+    parkApiCall: state.parkApiCall,
     isLoading: state.isLoading,
     error: state.error,
     formVisibleOnPage: state.formVisibleOnPage,
@@ -147,4 +145,5 @@ const mapStateToProps = state => {
 }
 
 ParkControl = connect(mapStateToProps)(ParkControl);
+
 export default ParkControl;

@@ -5,7 +5,6 @@ function ParkDetail(props) {
   const { park, onClickingDelete } = props;
   return (
     <React.Fragment>
-      <h2>{park.name} Details</h2>
       <h3>Park Type: {park.parkType}</h3>
       <h3>State: {park.state}</h3>
       <h3>City: {park.city}</h3>

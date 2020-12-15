@@ -8,26 +8,31 @@ function ReusableForm(props) {
         <input
           type='text'
           name='name'
+          defaultValue={props.park ? props.park.name : ""}
           placeholder='Park Name' />
         <br />
         <input
           type='text'
           name='parkType'
+          defaultValue={props.park ? props.park.parkType : ""}
           placeholder='Park Type' />
         <br />
         <input
           type='text'
           name='city'
+          defaultValue={props.park ? props.park.city : ""}
           placeholder='City' />
         <br />
         <input
           type='text'
           name='state'
+          defaultValue={props.park ? props.park.state : ""}
           placeholder='State' />
         <br />
         <textarea
           type='text'
           name='description'
+          defaultValue={props.park ? props.park.description : ""}
           placeholder='Enter Description' />
         <br />
         <button type='submit'>{props.buttonText}</button>
@@ -38,7 +43,8 @@ function ReusableForm(props) {
 
 ReusableForm.propTypes = {
   formSubmissionHandler: PropTypes.func,
-  buttonText: PropTypes.string
+  buttonText: PropTypes.string,
+  park: PropTypes.object
 };
 
 export default ReusableForm;
