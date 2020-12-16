@@ -1,5 +1,5 @@
 import * as c from './../actions/ActionTypes';
-
+// eslint-disable-next-line
 export default (state = null, action) => {
   const { selectedPark } = action;
   switch (action.type) {
