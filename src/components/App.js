@@ -11,7 +11,7 @@ function App() {
         <div id="spacing">
           <ParkControl />
         </div>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </React.Fragment>
   );

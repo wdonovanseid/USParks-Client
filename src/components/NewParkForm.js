@@ -11,14 +11,14 @@ function NewParkForm(props) {
       parkType: event.target.parkType.value,
       city: event.target.city.value,
       state: event.target.state.value,
-      description: event.target.description.value
+      description: event.target.description.value,
     });
   }
   return (
     <React.Fragment>
       <ReusableForm
-      formSubmissionHandler={handleNewParkFormSubmission}
-      buttonText="Add Park!"
+        formSubmissionHandler={handleNewParkFormSubmission}
+        buttonText="Add Park!"
       />
     </React.Fragment>
   );

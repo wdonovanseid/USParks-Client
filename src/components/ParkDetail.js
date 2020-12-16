@@ -11,7 +11,7 @@ function ParkDetail(props) {
       <hr />
       <p>{park.description}</p>
       <button type="button" className="btn btn-info" onClick={props.onClickingEdit}>Update Park</button>
-      <button type="button" className="btn btn-primary" onClick={() => onClickingDelete(park.ParkId)}>Delete Park</button>
+      <button type="button" className="btn btn-primary" onClick={() => onClickingDelete(park)}>Delete Park</button>
     </React.Fragment>
   );
 }

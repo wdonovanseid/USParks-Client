@@ -11,15 +11,16 @@ function EditParkForm(props) {
       parkType: event.target.parkType.value,
       city: event.target.city.value,
       state: event.target.state.value,
-      description: event.target.description.value
+      description: event.target.description.value,
+      parkId: props.park.parkId
     });
   }
   return (
     <React.Fragment>
       <ReusableForm
-      park={props.park}
-      formSubmissionHandler={handleEditParkFormSubmission}
-      buttonText="Edit Park!"
+        park={props.park}
+        formSubmissionHandler={handleEditParkFormSubmission}
+        buttonText="Edit Park!"
       />
     </React.Fragment>
   );

@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { makeApiCall } from '../actions';
 import ParkDetail from './ParkDetail';
 import ParkList from './ParkList';
 import * as a from './../actions/index';
@@ -9,45 +8,65 @@ import NewParkForm from './NewParkForm';
 import EditParkForm from './EditParkForm';
 
 class ParkControl extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     selectedPark: null,
-  //     editing: false
-  //   };
-  // }
 
   handleClick= () => {
-    const { dispatch } = this.props
+    const { dispatch } = this.props;
     if (this.props.selectedPark != null) {
-      const action = a.unselectPark
-      const action2 = a.hideEditForm
+      const action = a.unselectPark;
+      const action2 = a.hideEditForm;
       dispatch(action);
       dispatch(action2);
     } else if (this.props.editFormVisible) {
-      const { dispatch } = this.props
-      const action = a.showEditForm
+      const { dispatch } = this.props;
+      const action = a.showEditForm;
       dispatch(action);
-      const action2 = a.unselectPark
+      const action2 = a.unselectPark;
       dispatch(action2);
     } else { 
-      const action = a.toggleForm
-      dispatch(action);      
+      const action = a.toggleForm;
+      dispatch(action);
     }
   }
-  
+
+  timeWaste() {
+    const num = 80000
+    for (let i = 0; i < num; i++) {
+        if (true == false) {
+        return true;
+        }
+      }
+      this.componentDidMount();  
+    }
+
   componentDidMount() {
-    const {dispatch} = this.props;
-    dispatch(makeApiCall("GET"));
+    const { dispatch } = this.props;
+    dispatch(a.makeApiCall("get"));
   }
 
   handleEditClick = () => {
     const { dispatch } = this.props;
-    const action = a.showEditForm
+    const action = a.showEditForm;
     dispatch(action);
   }
 
-  handleDeleteParkClick = (id) => {
+  handleEditingPark = (parkToBeEdited) => {
+    const { dispatch } = this.props;
+    const action = a.makeApiCall("put", parkToBeEdited);
+    const action2 = a.unselectPark;
+    const action3 = a.hideEditForm;
+    dispatch(action);
+    dispatch(action2);
+    dispatch(action3);
+    this.componentDidMount();
+  }
+
+  handleDeleteParkClick = (parkToBeDeleted) => {
+    const { dispatch } = this.props;
+    const action = a.makeApiCall("delete", parkToBeDeleted);
+    const action2 = a.unselectPark;
+    dispatch(action);
+    dispatch(action2);
+    this.componentDidMount();
   }
 
   handleChangingSelectedPark = (id) => {
@@ -59,11 +78,14 @@ class ParkControl extends React.Component {
 
   handleAddingNewPark = (newPark) => {
     const { dispatch } = this.props;
-    const action = a.makeApiCall("POST", newPark);
+    const action = a.makeApiCall("post", newPark);
     const action2 = a.toggleForm;
+    //const action3 = a.makeApiCall("get");
     dispatch(action);
     dispatch(action2);
-
+    //dispatch(action3)
+    this.timeWaste();
+    // this.componentDidMount();
   }
 
   render() {
@@ -129,7 +151,6 @@ ParkControl.propTypes = {
   formVisibleOnPage: PropTypes.bool,
   selectedPark: PropTypes.object,
   editFormVisible: PropTypes.bool,
-  // masterParkList: PropTypes.object
 };
 
 const mapStateToProps = state => {
@@ -140,7 +161,6 @@ const mapStateToProps = state => {
     formVisibleOnPage: state.formVisibleOnPage,
     selectedPark: state.selectedPark,
     editFormVisible: state.editFormVisible,
-    // masterParkList: state.masterParkList
   }
 }
 

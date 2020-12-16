@@ -9,7 +9,8 @@ function ReusableForm(props) {
           type='text'
           name='name'
           defaultValue={props.park ? props.park.name : ""}
-          placeholder='Park Name' />
+          placeholder='Park Name'
+          required />
         <br />
         <input
           type='text'
