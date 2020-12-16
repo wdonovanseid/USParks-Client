@@ -5,7 +5,7 @@ const defaultState = {
   parkList: [],
   error: null
 }
-
+// eslint-disable-next-line
 export default (state = defaultState, action) => {
   switch (action.type) {
     case c.REQUEST_PARKS:

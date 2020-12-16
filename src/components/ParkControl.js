@@ -9,6 +9,14 @@ import EditParkForm from './EditParkForm';
 
 class ParkControl extends React.Component {
 
+
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     render: false
+  //   }
+  // }
+  
   handleClick= () => {
     const { dispatch } = this.props;
     if (this.props.selectedPark != null) {
@@ -28,16 +36,9 @@ class ParkControl extends React.Component {
     }
   }
 
-  timeWaste() {
-    const num = 80000
-    for (let i = 0; i < num; i++) {
-        if (true == false) {
-        return true;
-        }
-      }
-      this.componentDidMount();  
-    }
-
+  // componentDidMount() {
+    
+  // }
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch(a.makeApiCall("get"));
@@ -49,24 +50,24 @@ class ParkControl extends React.Component {
     dispatch(action);
   }
 
-  handleEditingPark = (parkToBeEdited) => {
+  handleEditingPark = async (parkToBeEdited) => {
     const { dispatch } = this.props;
     const action = a.makeApiCall("put", parkToBeEdited);
     const action2 = a.unselectPark;
     const action3 = a.hideEditForm;
-    dispatch(action);
+    await dispatch(action);
     dispatch(action2);
-    dispatch(action3);
-    this.componentDidMount();
+    dispatch(a.makeApiCall("get"));
+    dispatch(action3);  
   }
 
-  handleDeleteParkClick = (parkToBeDeleted) => {
+  handleDeleteParkClick = async (parkToBeDeleted) => {
     const { dispatch } = this.props;
     const action = a.makeApiCall("delete", parkToBeDeleted);
     const action2 = a.unselectPark;
-    dispatch(action);
+    await dispatch(action);
+    dispatch(a.makeApiCall("get"));
     dispatch(action2);
-    this.componentDidMount();
   }
 
   handleChangingSelectedPark = (id) => {
@@ -76,16 +77,13 @@ class ParkControl extends React.Component {
     dispatch(action);
   }
 
-  handleAddingNewPark = (newPark) => {
+  handleAddingNewPark = async (newPark) => {
     const { dispatch } = this.props;
     const action = a.makeApiCall("post", newPark);
     const action2 = a.toggleForm;
-    //const action3 = a.makeApiCall("get");
-    dispatch(action);
+    await dispatch(action);
+    dispatch(a.makeApiCall("get"));
     dispatch(action2);
-    //dispatch(action3)
-    this.timeWaste();
-    // this.componentDidMount();
   }
 
   render() {
@@ -104,7 +102,8 @@ class ParkControl extends React.Component {
           park={this.props.selectedPark}
           onEditPark={this.handleEditingPark}
         />
-        title=`Edit ${this.props.selectedPark.name}`
+        //console.log("selectedPark ", this.props.selectedPark);
+        title=`Edit ` // ${this.props.selectedPark.name}
         buttonText = "Return to Park List"
       } else if (this.props.selectedPark != null) {
         currentlyVisibleState = 

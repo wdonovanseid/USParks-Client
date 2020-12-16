@@ -22,7 +22,7 @@ export const showEditForm = ({
   type: c.SHOW_EDIT_FORM
 });
 
-export const makeApiCall = (param, parkInfo) => {
+export  const  makeApiCall = (param, parkInfo) => {
   let request = "";
   let cURL = "";
   if (param === 'put') {
@@ -51,8 +51,8 @@ export const makeApiCall = (param, parkInfo) => {
       //method: `${param}`,
       headers: { 'accept': 'text/plain', 'Authorization': `Bearer ${process.env.REACT_APP_API_KEY}`}}
   }
-  console.log("parkInfo ", parkInfo)
-  console.log("request ", request)
+  // console.log("parkInfo ", parkInfo)
+  // console.log("request ", request)
   return dispatch => {
     dispatch(requestParks);
     return fetch(cURL, request)
